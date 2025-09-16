@@ -1,34 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My First Website</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mini Browser — My Website</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="toolbar">
+      <div class="left-controls">
+        <button id="homeBtn" title="Home">🏠</button>
+        <button id="backBtn" title="Back">◀</button>
+        <button id="forwardBtn" title="Forward">▶</button>
+        <button id="reloadBtn" title="Reload">⟳</button>
+      </div>
+
+      <div class="url-area">
+        <input id="urlInput" type="text" placeholder="Type URL or search (e.g. https://example.com)" />
+        <button id="goBtn">Go</button>
+      </div>
+
+      <div class="right-controls">
+        <label class="zoom-group">
+          <button id="zoomOut" title="Zoom out">-</button>
+          <span id="zoomLabel">100%</span>
+          <button id="zoomIn" title="Zoom in">+</button>
+        </label>
+
+        <select id="langSelect" title="Language">
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+        </select>
+
+        <button id="themeToggle" title="Toggle theme">🌓</button>
+        <button id="downloadBtn" title="Download">⬇️</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="iframe-wrapper" id="iframeWrapper">
+        <iframe id="viewFrame" srcdoc="<p style='padding:20px'>Type a URL and press Go.</p>" sandbox="allow-scripts allow-forms allow-same-origin"></iframe>
+      </div>
+
+      <div class="statusbar" id="statusbar">Ready</div>
+    </main>
+  </div>
+
+  <!-- confirmation modal -->
+  <div id="confirmModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <h3 id="modalTitle">Are you sure?</h3>
+      <p id="modalMessage">Are you sure you want to download this file?</p>
+      <div class="modal-actions">
+        <button id="cancelDownload">Cancel</button>
+        <button id="confirmDownload">Download</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini Browser</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <header>
-    <h1>Welcome to My Website 🌍</h1>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="top-bar">
+      <input type="text" id="urlInput" placeholder="Search or enter address..."/>
+      <div id="suggestions"></div>
+      <button onclick="goToURL()">Go</button>
+      <button onclick="toggleTheme()">🌙/☀️</button>
+      <button onclick="zoomIn()">+</button>
+      <button onclick="zoomOut()">-</button>
+    </div>
   </header>
 
-  <main>
-    <section>
-      <h2>Hello World!</h2>
-      <p>This is my very first custom website.</p>
-      <button id="clickMe">Click Me</button>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 My Website</p>
-  </footer>
+  <iframe id="browserFrame" src="https://www.google.com"></iframe>
 
   <script src="script.js"></script>
 </body>
